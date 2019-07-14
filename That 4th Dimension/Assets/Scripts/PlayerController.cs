@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     private float speed;
     [SerializeField]
     private Text winText;
+    [SerializeField]
+    private GameDirector director;
+
 
     private Rigidbody rb;
     private int count;
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour
         if (count == 1)
         {
             winText.text = "You Win!";
+            director.sceneWon();
         }
     }
 }
