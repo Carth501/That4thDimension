@@ -1,11 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameDirector : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] dimensions;
+    private float endTime;
+    [SerializeField]
+    private float delay;
+    private bool won = false;
+    [SerializeField]
+    private string nextLevel;
 
 
 
@@ -38,6 +45,21 @@ public class GameDirector : MonoBehaviour
         {
             Switch(5);
         }
+
+        if(won && endTime <= Time.time)
+        {
+            Debug.Log("Game Won.");
+            if(nextLevel != null)
+            {
+                SceneManager.LoadScene(nextLevel);
+            }
+        }
+    }
+
+    public void sceneWon()
+    {
+        won = true;
+        endTime = Time.time + delay;
     }
 
     private void Switch(int dim)
